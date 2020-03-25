@@ -29,6 +29,80 @@ class LinkedList {
         newNode.next = new _Node(item, null);
     }
 
+    insertBefore(item, key) {
+        if (this.head === null) {
+            this.insertFirst(item);
+        }
+
+        let currentNode = this.head; // ex. {value: 'Apollo', next: {value: 'Boomer', next: null}}
+        let previousNode = this.head; 
+
+        while (currentNode !== null && currentNode.value !== key ) {
+            previousNode = currentNode;
+            currentNode = currentNode.next;
+        }
+
+        if (currentNode === null) {
+            console.log('Key not found');
+            return;
+        }
+
+        let newNode = new _Node(item, currentNode);
+
+        previousNode.next = newNode;
+    }
+
+    insertAfter(item, key) {
+        if (this.head === null) {
+            this.insertFirst(item);
+        }
+
+        let currentNode = this.head;
+        let previousNode = this.head; 
+
+        while (currentNode !== null && currentNode.value !== key ) {
+            previousNode = currentNode;
+            currentNode = currentNode.next;
+        }
+
+        if (currentNode === null) {
+            console.log('Key not found');
+            return;
+        }
+
+        let newNode = new _Node(item, currentNode.next);
+
+        previousNode.next.next = newNode;
+    }
+
+    insertAt(item, position) {
+        if (this.head === null) {
+            this.insertFirst(item);
+        }
+        
+        let currentPostion = 1;
+        let currentNode = this.head;
+        let previousNode = this.head; 
+
+        while (currentPostion < position) {
+            previousNode = currentNode;
+            currentNode = currentNode.next;
+            currentPostion++;
+        }
+
+        if (currentNode === null) {
+            console.log('Key not found');
+            return;
+        }
+
+        let newNode = new _Node(item, currentNode);
+        if (position === 1) {
+            this.insertFirst(item);
+        } else {
+            previousNode.next = newNode;
+        }
+    }
+
     remove(item) {
         if (!this.head) {
             return null;
@@ -71,3 +145,28 @@ class LinkedList {
         return currentNode;
     }
 }
+
+function main() {
+    const SLL = new LinkedList;
+
+    SLL.insertFirst('Apollo');
+    SLL.insertLast('Boomer');
+    SLL.insertLast('Helo');
+    SLL.insertLast('Husker');
+    SLL.insertLast('Starbuck');
+
+    SLL.insertLast('Tauhida');
+
+    SLL.remove('Husker');
+
+    SLL.insertBefore('Athena', 'Helo');
+
+    SLL.insertAfter('Hotdog', 'Helo');
+
+    SLL.insertAt('Kat', 3);
+
+    SLL.remove('Tauhida');
+    console.log(SLL);
+}
+
+main();
