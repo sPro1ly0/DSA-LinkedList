@@ -299,7 +299,7 @@ function thirdFromEnd(list) {
     let third = list.head;
     while (findEnd.next !== null) { // loops twice with linkedList above
         findEnd = findEnd.next.next.next;
-        // console.log('findend', findEnd); // 1st Athena, 2nd Starbuck
+        // console.log('end', findEnd); // 1st Athena, 2nd Starbuck
         third = third.next.next;
         // console.log('third', third); // 1st Kat, 2nd Helo <-- third from the end
     }
@@ -308,7 +308,16 @@ function thirdFromEnd(list) {
 // console.log(thirdFromEnd(linkedList)); // Helo
 
 // Middle of the list
-
+function middleOfList(list) {
+    let findEnd = list.head;
+    let middle = list.head;
+    while (findEnd.next !== null) {
+        findEnd = findEnd.next.next;
+        middle = middle.next
+    }
+    return middle.value;
+}
+//console.log(middleOfList(linkedList)); // Athena
 
 // Cycle in a list
 let CycleList;
@@ -335,6 +344,49 @@ function cycleList(list) {
     }
     
 }
-// cycleList(CycleList);
+// cycleList(CycleList); // 'This is a linked list cycle'
 
 // Sorting a list
+function sortList(list) {
+    let currentNode = list.head;
+    let storeValue;
+    let sort = true;
+    let result = '';
+
+    while (sort) {
+
+        sort = false;
+
+        while (currentNode.next) {
+
+            if (currentNode.value > currentNode.next.value) {
+
+              storeValue = currentNode.value; // save value "Kat"
+              currentNode.value = currentNode.next.value; // let value equal the next value "Athena"
+              currentNode.next.value = storeValue; // set stored value equal to new value's next value; "Athena", next: {value: "Kat", ...}
+
+              sort = true;
+            }
+
+            currentNode = currentNode.next;
+          }
+
+          if (!currentNode.next) {
+            currentNode = list.head;
+          }
+    }
+    // output sorted link list
+    list = list.head;
+    while (list !== null) {
+        if (list.next === null) {
+            result += `${list.value}`;
+            list = list.next;
+        } else {
+            result += `${list.value} -> `;
+            list = list.next;
+        }
+    }
+
+    return result;
+}
+console.log(sortList(linkedList));
