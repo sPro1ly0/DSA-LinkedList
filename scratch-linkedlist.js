@@ -186,7 +186,6 @@ function display(list) {
             return displayList += `${link.value} -> null`;
         }
     }
-    return displayList;
 }
 // console.log(display(linkedList));
 
@@ -258,3 +257,39 @@ function findLast(list) {
 }
 
 // console.log(findLast(linkedList)); // Starbuck
+
+
+function WhatDoesThisProgramDo(lst) {
+    let current = lst.head;
+    while (current !== null) {
+        let newNode = current;
+        while (newNode.next !== null) {
+            if (newNode.next.value === current.value) {
+                newNode.next = newNode.next.next;
+            }
+            else {
+                newNode = newNode.next;
+            }
+        }
+        current = current.next;
+    }
+}
+// This mystery program compares same values through the linked list.
+// If the a node's value is equal the another node's value,
+// then the pointer will skip this node and point to the node after it.
+// It tests each node value against the other node values in the nested while loops.
+// The time complexity polynomial O n^2;
+
+// Reverse a list
+
+
+// 3rd from the end
+
+
+// Middle of the list
+
+
+// Cycle in a list
+
+
+// Sorting a list
