@@ -167,6 +167,94 @@ function main() {
 
     SLL.remove('Tauhida');
     console.log(SLL);
+    return SLL;
 }
 
-main();
+// Supplemental functions for a linked list
+
+const linkedList = main(); // use list created with main()
+
+// display linked list
+function display(list) {
+    let link = list.head;
+    let displayList = '';
+    while(link !== null) {
+        if (link.next !== null) {
+            displayList += `${link.value} -> `;
+            link = link.next;
+        } else {
+            return displayList += `${link.value} -> null`;
+        }
+    }
+    return displayList;
+}
+// console.log(display(linkedList));
+
+// return size of linked list
+function size(list) {
+    let link = list.head;
+    let size = 0;
+    if (!link) {
+        return null;
+    }
+
+    while (link !== null) {
+        if (link.value) {
+            size++;
+            link = link.next;
+        }
+    }
+
+    return size;
+}
+// console.log(size(linkedList)); // 7
+
+// is list empty or not (no using size() function)
+function isEmpty(list) {
+    if (list.head === null) {
+        return true;
+    } else {
+        return false;
+    }
+}
+// console.log(isEmpty(linkedList)); // false
+
+// find the node before the item you are looking for
+function findPrevious(list, item) {
+    let link = list.head;
+    if (!link) {
+        return null;
+    }
+    let currentNode = link;
+    let previousNode = link;
+
+    while (currentNode !== null && currentNode.value !== item) {
+        previousNode = currentNode;
+        currentNode = currentNode.next
+    }
+
+    if (currentNode === null) {
+        return console.log('Item is not found.')
+    } else {
+        let node = previousNode.value;
+        return node;
+    }
+
+}
+// console.log(findPrevious(linkedList, 'Starbuck')) // Hotdog
+
+// return the last node in linked list
+function findLast(list) {
+    let link = list.head;
+    if (!link) {
+        return null;
+    }
+
+    while (link.next !== null) {
+        link = link.next;
+    }
+
+    return link.value;
+}
+
+// console.log(findLast(linkedList)); // Starbuck
