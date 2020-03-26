@@ -280,8 +280,18 @@ function WhatDoesThisProgramDo(lst) {
 // It tests each node value against the other node values in the nested while loops.
 // The time complexity polynomial O n^2;
 
-// Reverse a list
-
+// Reverse a list: Your program should reverse the direction of a given singly linked list.
+// In other words, all pointers should point backward.
+function reverseList(list) {
+    let link = list.head;
+    let reverseArrow = '';
+    while (link.next !== null) {
+        reverseArrow += `${link.value} <- `;
+        link = link.next;
+    }
+    return reverseArrow;
+}
+// console.log(reverseList(linkedList)); // Apollo <- Boomer <- Kat <- Athena <- Helo <- Hotdog <- 
 
 // 3rd from the end
 
@@ -290,6 +300,30 @@ function WhatDoesThisProgramDo(lst) {
 
 
 // Cycle in a list
+let CycleList;
+function addNextValues(list) {
+    let node = list.head;
+    while (node.next !== null) {
+        node = node.next;
+    }
+    if (node.next === null) {
+        node.next = list.head;
+        return CycleList = node.next;
+    }
+}
+addNextValues(linkedList);
 
+function cycleList(list) {
+    let node = list;
+    while(node.next !== null) {
+        node = node.next;
+        
+        if (node.next == list) {
+            return console.log('This is a linked list cycle');
+        }
+    }
+    
+}
+cycleList(CycleList);
 
 // Sorting a list
