@@ -285,16 +285,27 @@ function WhatDoesThisProgramDo(lst) {
 function reverseList(list) {
     let link = list.head;
     let reverseArrow = '';
-    while (link.next !== null) {
+    while (link !== null) {
         reverseArrow += `${link.value} <- `;
         link = link.next;
     }
     return reverseArrow;
 }
-// console.log(reverseList(linkedList)); // Apollo <- Boomer <- Kat <- Athena <- Helo <- Hotdog <- 
+ // console.log(reverseList(linkedList)); // Apollo <- Boomer <- Kat <- Athena <- Helo <- Hotdog <- Starbuck <-
 
 // 3rd from the end
-
+function thirdFromEnd(list) {
+    let findEnd = list.head;
+    let third = list.head;
+    while (findEnd.next !== null) { // loops twice with linkedList above
+        findEnd = findEnd.next.next.next;
+        // console.log('findend', findEnd); // 1st Athena, 2nd Starbuck
+        third = third.next.next;
+        // console.log('third', third); // 1st Kat, 2nd Helo <-- third from the end
+    }
+    return third.value;
+}
+// console.log(thirdFromEnd(linkedList)); // Helo
 
 // Middle of the list
 
@@ -311,7 +322,7 @@ function addNextValues(list) {
         return CycleList = node.next;
     }
 }
-addNextValues(linkedList);
+// addNextValues(linkedList);
 
 function cycleList(list) {
     let node = list;
@@ -324,6 +335,6 @@ function cycleList(list) {
     }
     
 }
-cycleList(CycleList);
+// cycleList(CycleList);
 
 // Sorting a list
